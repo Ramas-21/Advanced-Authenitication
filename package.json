@@ -1,9 +1,10 @@
 {
   "name": "advanced_authentication",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "backend/index.js",
+  "type" :"module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon backend/index.js"
   },
   "keywords": [],
   "author": "",
