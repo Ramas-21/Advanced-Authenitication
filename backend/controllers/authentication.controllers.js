@@ -32,6 +32,8 @@ export const signup = async (req, res) => {
         // JWT sending verification email with the token after a successiful signup
         generateTokenAndSetCookie(res, user._id)
 
+        sendVerificationEmail(user.email, verificationToken)
+
         res.status(201).json({
             success: true,
             message: "User created successfully",
