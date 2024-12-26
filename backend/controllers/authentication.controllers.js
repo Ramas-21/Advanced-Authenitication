@@ -1,5 +1,5 @@
 import bcryptjs from "bcryptjs";
-import { userModel } from "../models/user.model.js";
+import { User } from "../models/user.model.js";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js";
 
 
@@ -11,7 +11,7 @@ export const signup = async (req, res) => {
             throw new Error ("All fields are required");
         }
 
-        const userAlreadyExists = await userModel.findOne({email})
+        const userAlreadyExists = await User.findOne({email})
         if(userAlreadyExists){
             return res.status(400).json({ success:false, message:"user already exists"});
         }
@@ -19,7 +19,7 @@ export const signup = async (req, res) => {
         const hashedPassword = await bcryptjs.hash(password, 10)
         //create a new user
         const verificationToken = Math.floor(100000 + Math.random() * 900000).toString();
-        const user = new userModel ({
+        const user = new User({
             email,
             password: hashedPassword,
             name,
